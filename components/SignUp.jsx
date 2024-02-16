@@ -4,9 +4,13 @@ import { signIn } from '../reducers/user';
 import Image from 'next/image';
 import toast, { Toaster } from 'react-hot-toast';
 import { Button, Modal, Box, Typography } from '@mui/material';
+import { useRouter } from 'next/router';
+
+
 
 function SignUp() {
   const dispatch = useDispatch();
+  const router = useRouter();
   const user = useSelector((state) => state.user.value);
 
   const [firstname, setFirstname] = useState('');
@@ -28,6 +32,8 @@ function SignUp() {
         if (data.result) {
           dispatch(signIn({ username: signUpUsername, token: data.token }));
           toast.success('Successfully toasted!');
+          router.push('/Home');
+
           setFirstname('');
           setSignUpUsername('');
           setSignUpPassword('');
