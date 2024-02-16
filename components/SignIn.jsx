@@ -43,6 +43,9 @@ function SignIn() {
           dispatch(signIn({ username: username, token: data.token }));
           toast.success('Successfully signed in!');
           router.push('/Home');
+        } else {
+            toast.error('fucked signed in!');
+
         }
       });
   };
@@ -80,18 +83,20 @@ function SignIn() {
                 placeholder="Username"
                 onInput={(input) => setUsername(input.target.value)}
               />
+                          <br></br>
+
               <input
                 type="password"
                 placeholder="Password"
                 onInput={(input) => setPassword(input.target.value)}
               />
+                          <br></br>
+
               <button onClick={() => handleSignIn()}>Sign In</button>
               <Toaster />
             </div>
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+         
         </Box>
       </Modal>
     </div>

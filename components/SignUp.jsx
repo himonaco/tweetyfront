@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { signUp } from '../reducers/user';
+import { signIn } from '../reducers/user';
 import Image from 'next/image';
 import toast, { Toaster } from 'react-hot-toast';
 import { Button, Modal, Box, Typography } from '@mui/material';
@@ -26,7 +26,7 @@ function SignUp() {
       .then((response) => response.json())
       .then((data) => {
         if (data.result) {
-          dispatch(signUp({ firstname: firstname, username: signUpUsername, token: data.token }));
+          dispatch(signIn({ username: signUpUsername, token: data.token }));
           toast.success('Successfully toasted!');
           setFirstname('');
           setSignUpUsername('');
@@ -60,28 +60,35 @@ function SignUp() {
       >
         <Box sx={style}>
           <div>
-            <Image src="/tweet.png" alt="Upside Down Twitter Logo" width={60} height={60} />
+            <Image src="/tweet.png" alt="tweetlogo" width={60} height={60} />
             <h1>SignUp for your account</h1>
           </div>
           <div>
+          <input
+              type="text"
+              placeholder="Firstname"
+              value={firstname}
+              onChange={(event) => setFirstname(event.target.value)}
+            />
+            <br></br>
             <input
               type="text"
               placeholder="Username"
               value={signUpUsername}
               onChange={(event) => setSignUpUsername(event.target.value)}
             />
+            <br></br>
             <input
               type="password"
               placeholder="Password"
               value={signUpPassword}
               onChange={(event) => setSignUpPassword(event.target.value)}
             />
+            <br></br>
             <button onClick={handleSignUp}>Sign Up</button>
           </div>
           <Toaster />
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+         
         </Box>
       </Modal>
     </div>
