@@ -41,10 +41,10 @@ function SignIn() {
       .then((data) => {
         if (data.result) {
           dispatch(signIn({ username: username, token: data.token }));
-          toast.success('Successfully signed in!');
+          toast.success(`FUCK YEAH, WE'RE IN! 🔥`);
           router.push('/Home');
         } else {
-            toast.error('fucked signed in!');
+            toast.error('💩💩💩💩, TRY AGAIN!!!');
 
         }
       });
