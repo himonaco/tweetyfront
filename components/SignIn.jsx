@@ -8,6 +8,8 @@ import Modal from '@mui/material/Modal'; // Add this import
 import Box from '@mui/material/Box'; // Add this import
 import Typography from '@mui/material/Typography'; // Add this import
 import Button from '@mui/material/Button'; // Add this import
+import { TextField } from '@mui/material';
+
 
 function SignIn() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -78,14 +80,14 @@ function SignIn() {
           </div>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             <div>
-              <input
+              <TextField
                 type="text"
                 placeholder="Username"
                 onInput={(input) => setUsername(input.target.value)}
               />
                           <br></br>
 
-              <input
+              <TextField
                 type="password"
                 placeholder="Password"
                 onInput={(input) => setPassword(input.target.value)}

@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import React, { useState, useEffect } from "react";
-import { changeState } from "../reducers/tweets";
+import { addTweet } from "../reducers/tweets";
 import toast, { Toaster } from "react-hot-toast";
 
 function Tweet() {
@@ -21,20 +21,27 @@ function Tweet() {
   // Handle submit button:
   const handleSubmitBtn = () => {
     if (tweet === "") {
-      toast("Please enter a tweet first !");
+      toast.error("Please enter a tweet first !"); // Changed toast to error for better visibility
       return;
-    } else {
-      const userData = { token, tweet, timestamp };
-      fetch("https://localhost:3000/tweets/send", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(userData),
-      })
-        .then((response) => response.json())
-        .then(() => dispatch(changeState()))
-        .then(() => toast("Tweet saved !"))
-        .then(() => setTweet(""));
     }
+
+    const userData = { token, tweet, timestamp };
+
+    fetch("https://localhost:3000/tweets/send", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userData),
+    })
+      .then((response) => response.json()) 
+      .then((data) => {
+        if (data.result) {
+          dispatch(addTweet());
+          toast.success("Tweet saved !"); // Changed toast to success for positive feedback
+          setTweet("");
+        } else {
+          toast.error("An error occurred while sending the tweet.");
+        }
+      });
   };
 
   return (

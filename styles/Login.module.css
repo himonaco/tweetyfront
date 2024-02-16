@@ -4,7 +4,9 @@
     height: 100vh;
     overflow: hidden;
     background-color: grey;
-    animation: colorchange 5s infinite;
+    background-image: url(../public/smoke.gif);
+    
+
     padding: 0;
     margin: 0;
 }
@@ -16,12 +18,7 @@
     100% {background: green;}
 }
 
-@keyframes boxcolor {
-    50%  {background: purple;}
-    25%  {background: turquoise;}
-    100% {background: hotpink;}
-    0%   {background: orange;}
-}
+
 
 .elon {
     height: 100vh;
@@ -44,7 +41,15 @@
 }
 
 .tweet {
-    background-image: url(../public/tweet.png);
+    /* background-image: url(../public/tweet.png); */
+    height: 20%;
+    position: absolute;
+    width: 30%;
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+
 }
 
 .party {
@@ -62,7 +67,8 @@
 
 .button {
     cursor: pointer;
-    background-color: #fff;
+    background-color: transparent;
+    color: black;
     margin-top: 30px;
     border-radius: 25px;
 }

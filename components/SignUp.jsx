@@ -5,6 +5,8 @@ import Image from 'next/image';
 import toast, { Toaster } from 'react-hot-toast';
 import { Button, Modal, Box, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
+import { TextField } from '@mui/material';
+
 
 
 
@@ -31,8 +33,8 @@ function SignUp() {
       .then((data) => {
         if (data.result) {
           dispatch(signIn({ username: signUpUsername, token: data.token }));
-          toast.success('Successfully toasted!');
-          router.push('/Home');
+          toast.success(`FUCK YEAH, WE'RE IN! 🔥`, { autoClose: 4000 });
+          router.push('/home');
 
           setFirstname('');
           setSignUpUsername('');
@@ -70,21 +72,21 @@ function SignUp() {
             <h1>SignUp for your account</h1>
           </div>
           <div>
-          <input
+          <TextField
               type="text"
               placeholder="Firstname"
               value={firstname}
               onChange={(event) => setFirstname(event.target.value)}
             />
             <br></br>
-            <input
+            <TextField
               type="text"
               placeholder="Username"
               value={signUpUsername}
               onChange={(event) => setSignUpUsername(event.target.value)}
             />
             <br></br>
-            <input
+            <TextField
               type="password"
               placeholder="Password"
               value={signUpPassword}
